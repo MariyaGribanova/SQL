@@ -33,7 +33,7 @@ ram (в мегабайтах), размер диска - hd (в гигабайт
    Вывод: производитель, скорость.
    SELECT DISTINCT Product.maker, Laptop.speed FROM Product JOIN Laptop ON Product.model = Laptop.model WHERE Laptop.hd >= 10 AND type = 'Laptop'
 
-7.
+7. Найдите номера моделей и цены всех имеющихся в продаже продуктов (любого типа) производителя B (латинская буква).
 
 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты.
    SELECT maker FROM Product WHERE type IN ('PC') EXCEPT SELECT maker FROM Product WHERE type IN ('Laptop');
@@ -70,5 +70,5 @@ II. КРАТКАЯ ИНФОРМАЦИЯ О БАЗЕ ДАННЫХ "КОРАБЛИ
            2) Потопленный корабль в последующих битвах участия не принимает.
       
 ЗАДАНИЯ:
-1. Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
+1(14). Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
    SELECT Ships.class, Ships.name, Classes.country FROM Ships LEFT JOIN Classes ON Ships.class = Classes.class WHERE numGuns >= 10
