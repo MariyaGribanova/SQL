@@ -29,6 +29,10 @@ SELECT * FROM Printer WHERE color = 'y';
 5. Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12x или 24x CD и цену менее 600 дол.
 SELECT model, speed, hd FROM PC WHERE (CD = '12x' OR CD ='24x') AND price < 600;
 
+6.
+
+7.
+
 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты.
 SELECT maker FROM Product WHERE type IN ('PC') EXCEPT SELECT maker FROM Product WHERE type IN ('Laptop');
 
