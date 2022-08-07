@@ -36,4 +36,12 @@ SELECT model, speed, hd FROM PC WHERE (CD = '12x' OR CD ='24x') AND price < 600;
 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты.
 SELECT maker FROM Product WHERE type IN ('PC') EXCEPT SELECT maker FROM Product WHERE type IN ('Laptop');
 
+9. 
 
+10. Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
+SELECT model, price FROM Printer WHERE Price IN (SELECT MAX (price) FROM Printer)
+
+11. Найдите среднюю скорость ПК.
+SELECT AVG (speed) FROM PC
+
+12. Найдите среднюю скорость ПК-блокнотов, цена которых превышает 1000 дол.
