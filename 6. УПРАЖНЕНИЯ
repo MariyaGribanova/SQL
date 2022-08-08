@@ -38,7 +38,8 @@ ram (в мегабайтах), размер диска - hd (в гигабайт
 8. Найдите производителя, выпускающего ПК, но не ПК-блокноты.
    SELECT maker FROM Product WHERE type IN ('PC') EXCEPT SELECT maker FROM Product WHERE type IN ('Laptop');
 
-9. 
+9. Найдите производителей ПК с процессором не менее 450 Мгц. Вывести: Maker
+   SELECT DISTINCT Product.maker FROM Product JOIN PC ON Product.model = PC.model WHERE PC.speed >= 450
 
 10. Найдите модели принтеров, имеющих самую высокую цену. Вывести: model, price
     SELECT model, price FROM Printer WHERE Price IN (SELECT MAX (price) FROM Printer)
@@ -50,8 +51,13 @@ ram (в мегабайтах), размер диска - hd (в гигабайт
     SELECT AVG (speed) FROM Laptop WHERE price > 1000
     
 13. Найдите среднюю скорость ПК, выпущенных производителем A.
-    
-    
+    SELECT AVG (PC.speed) FROM PC JOIN Product ON PC.model = Product.model WHERE type = 'PC' AND Product.maker = 'A'
+
+14(15). Найдите размеры жестких дисков, совпадающих у двух и более PC. Вывести: HD
+        SELECT hd FROM PC GROUP BY hd HAVING COUNT(hd) >=2
+        
+15(16). Найдите пары моделей PC, имеющих одинаковые скорость и RAM. В результате каждая пара указывается только один раз, т.е. (i,j), но не (j,i). 
+        Порядок вывода: модель с большим номером, модель с меньшим номером, скорость и RAM.
     
     
 II. КРАТКАЯ ИНФОРМАЦИЯ О БАЗЕ ДАННЫХ "КОРАБЛИ":
@@ -72,3 +78,5 @@ II. КРАТКАЯ ИНФОРМАЦИЯ О БАЗЕ ДАННЫХ "КОРАБЛИ
 ЗАДАНИЯ:
 1(14). Найдите класс, имя и страну для кораблей из таблицы Ships, имеющих не менее 10 орудий.
    SELECT Ships.class, Ships.name, Classes.country FROM Ships LEFT JOIN Classes ON Ships.class = Classes.class WHERE numGuns >= 10
+   
+2(). 
