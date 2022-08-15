@@ -101,7 +101,11 @@
          в отсортированном по возрастанию цены виде.
          SELECT author, title, price FROM book WHERE price <= (SELECT MIN(price)+150 FROM book) ORDER BY price;
 
-     25) 
+     25) Вывести информацию (автора, книгу и количество) о тех книгах, количество экземпляров которых в таблице book не дублируется.
+         SELECT author, title, amount FROM book WHERE amount IN (SELECT amount FROM book GROUP BY amount HAVING COUNT(amount)=1);
+
+     26) Вывести информацию о книгах(автор, название, цена), цена которых меньше самой большой из минимальных цен, вычисленных для каждого автора.
+         SELECT author, title, price FROM book WHERE price < ALL(SELECT MAX(price) FROM book WHERE price IN (SELECT MIN(price) FROM book GROUP BY author));
          
          
          
