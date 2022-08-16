@@ -105,7 +105,34 @@
          SELECT author, title, amount FROM book WHERE amount IN (SELECT amount FROM book GROUP BY amount HAVING COUNT(amount)=1);
 
      26) Вывести информацию о книгах(автор, название, цена), цена которых меньше самой большой из минимальных цен, вычисленных для каждого автора.
-         SELECT author, title, price FROM book WHERE price < ALL(SELECT MAX(price) FROM book WHERE price IN (SELECT MIN(price) FROM book GROUP BY author));
+         SELECT author, title, price FROM book WHERE price < ALL(SELECT MAX(price) FROM book WHERE price IN (SELECT MIN(price) FROM book GROUP BY author)).
+
+1.5 ЗАПРОСЫ КОРРЕКТИРОВКИ ДАННЫХ
+
+     27) Создать таблицу поставка (supply), которая имеет ту же структуру, что и таблиц book.
+         CREATE table supply (supply_id INT PRIMARY KEY AUTO_INCREMENT, title VARCHAR(50), author VARCHAR(30), price DECIMAL(8, 2), amount INT);
+
+     28) Заполнить таблицу supply записями по документации:
+         INSERT INTO supply VALUES (1, "Лирика", "Пастернак Б.Л.", 518.99, 2);
+         INSERT INTO supply VALUES (2, "Черный человек", "Есенин С.А.", 570.20, 6);
+         INSERT INTO supply VALUES (3, "Белая гвардия", "Булгаков М.А.", 540.50, 7);
+         INSERT INTO supply VALUES (4, "Идиот", "Достоевский Ф.М.", 360.80, 3);
+
+     29) Добавить из таблицы supply в таблицу book, все книги, кроме книг, написанных Булгаковым М.А. и Достоевским Ф.М.
+         INSERT INTO book (title, author, price, amount) 
+         SELECT title, author, price, amount 
+         FROM supply WHERE author NOT IN ('Булгаков М.А.', 'Достоевский Ф.М.'); 
+         SELECT * FROM book;
+
+     30) Занести из таблицы supply в таблицу book только те книги, авторов которых нет в book.
+         INSERT INTO book (title, author, price, amount) SELECT title, author, price, amount FROM supply WHERE author NOT IN (SELECT author FROM book);
+         SELECT * FROM book;
+     
+     31) Уменьшить на 10% цену тех книг в таблице book, количество которых принадлежит интервалу от 5 до 10, включая границы.
+         
+
+
+
          
          
          
