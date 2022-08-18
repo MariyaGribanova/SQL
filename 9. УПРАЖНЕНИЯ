@@ -166,14 +166,15 @@
     37) Вывести из таблицы trip информацию о командировках тех сотрудников, фамилия которых заканчивается на букву «а», в отсортированном по убыванию 
         даты последнего дня командировки виде. В результат включить столбцы name, city, per_diem, date_first, date_last.
         SELECT name, city, per_diem, date_first, date_last FROM trip WHERE name LIKE '%а %' ORDER BY date_last DESC;
-        SELECT*FROM trip;
 
     38) Вывести в алфавитном порядке фамилии и инициалы тех сотрудников, которые были в командировке в Москве.
         SELECT DISTINCT name FROM trip WHERE city = 'Москва' ORDER BY name;
 
     39) Для каждого города посчитать, сколько раз сотрудники в нем были.  Информацию вывести в отсортированном в алфавитном порядке по названию городов. 
         Вычисляемый столбец назвать Количество.
-        
+        SELECT city, COUNT(city) AS Количество FROM trip GROUP BY city ORDER BY city;
+
+    40) 
         
 
         
