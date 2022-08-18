@@ -156,6 +156,14 @@
         SELECT * FROM ordering;
 
     36) Делаем скидку 5% на самое большое количество экземпляров книг (Стихи Есенина), чтобы поскорее расходились.
+        UPDATE book SET price = round(price*0.95,2) WHERE author = 'Есенин С.А.' AND amount IN (SELECT * FROM (SELECT max(amount) FROM book 
+        WHERE author = 'Есенин С.А.') AS p);
+        SELECT * FROM book;
+
+1.6 ТАБЛИЦА "КОМАНДИРОВКИ", ЗАПРОСЫ НА ВЫБОРКУ
+    
+    37) 
+
         
 
  
