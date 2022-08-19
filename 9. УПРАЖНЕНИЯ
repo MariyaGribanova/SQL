@@ -113,8 +113,9 @@
         не нужно.
         SELECT title, author, amount, ((SELECT MAX(amount) FROM book)-amount) AS Заказ FROM book WHERE amount<(SELECT MAX(amount) FROM book);
 
-    28) Можно посмотреть, при продаже всех книг, какая книга принесет больше всего выручки, в процентах. Судя по результату, магазин хорошо вложился в 
-        Стихи Есенина
+    28) Какая книга принесет больше всего выручки, в процентах.
+        SELECT *, round((100*price*amount/(SELECT SUM(price*amount) FROM book)),2) AS income_percent FROM book ORDER BY income_percent DESC;
+
 
 1.5 ЗАПРОСЫ КОРРЕКТИРОВКИ ДАННЫХ
 
