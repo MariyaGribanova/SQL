@@ -232,9 +232,11 @@
         - violation (строка длиной 50);
         - sum_fine (вещественное число, максимальная длина 8, количество знаков после запятой 2);
         - date_violation (дата);
-        - date_payment (дата).
+        - date_payment (дата)
+        CREATE table fine (fine_id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(30), number_plate VARCHAR(6), violation VARCHAR(50), sum_fine FLOAT (8,2), 
+        date_violation date, date_payment date);
 
-    50) 
+    50) В таблицу fine первые 5 строк уже занесены. Добавить в таблицу записи с ключевыми значениями 6, 7, 8.
 
            
 
