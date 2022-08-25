@@ -226,7 +226,7 @@
 1.7 ТАБЛИЦА "НАРУШЕНИЯ ПДД", ЗАПРОСЫ КОРРЕКТИРОВКИ
 
     49) Создать таблицу fine следующей структуры:
-        - fine_id (ключевой столбец целого типа с автоматическим увеличением значения ключа на 1)ж
+        - fine_id (ключевой столбец целого типа с автоматическим увеличением значения ключа на 1);
         - name (строка длиной 30);
         - number_plate	(строка длиной 6);
         - violation (строка длиной 50);
@@ -257,7 +257,27 @@
         SET sum_fine = sum_fine*2 WHERE fine.name = query_in.name AND fine.number_plate = query_in.number_plate AND fine.violation = query_in.violation 
         AND fine.date_payment IS NULL;
 
-    54) 
+    54) Водители оплачивают свои штрафы. В таблице payment занесены даты их оплаты.
+            Необходимо:
+            - в таблицу fine занести дату оплаты соответствующего штрафа из таблицы payment; 
+            - уменьшить начисленный штраф в таблице fine в два раза  (только для тех штрафов, информация о которых занесена в таблицу payment), если 
+              оплата произведена не позднее 20 дней со дня нарушения.
+            
+            UPDATE fine, payment SET fine.date_payment = payment.date_payment, 
+                fine.sum_fine = IF((payment.date_payment - payment.date_violation)<= 20, fine.sum_fine/2, fine.sum_fine) 
+                    WHERE (payment.name, payment.number_plate, payment.violation) = (fine.name, fine.number_plate, fine.violation) 
+                        AND fine.date_payment IS NULL;
+
+    55) Создать новую таблицу back_payment, куда внести информацию о неоплаченных штрафах (Фамилию и инициалы водителя, номер машины, нарушение, сумму 
+        штрафа  и  дату нарушения) из таблицы fine.
+        Важно. На этом шаге необходимо создать таблицу на основе запроса! Не нужно одним запросом создавать таблицу, а вторым в нее добавлять строки.
+        CREATE TABLE back_payment AS SELECT name, number_plate, violation, sum_fine, date_violation FROM fine WHERE date_payment IS NULL;
+
+    56) Удалить из таблицы fine информацию о нарушениях, совершенных раньше 1 февраля 2020 года.
+        DELETE FROM fine WHERE date_violation < '2020_02_01';
+
+    57) 
+
            
 
 
