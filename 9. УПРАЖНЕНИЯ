@@ -276,7 +276,11 @@
     56) Удалить из таблицы fine информацию о нарушениях, совершенных раньше 1 февраля 2020 года.
         DELETE FROM fine WHERE date_violation < '2020_02_01';
 
-    57) 
+    57) Вывести название, жанр и цену тех книг, количество которых больше 8, в отсортированном по убыванию цены виде:
+        SELECT title, name_genre, price FROM genre INNER JOIN book ON genre.genre_id = book.genre_id WHERE amount>8 ORDER BY price DESC
+
+    58) 
+
 
            
 
