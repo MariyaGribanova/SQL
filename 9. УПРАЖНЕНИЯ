@@ -325,6 +325,15 @@
 
     63) 
 
+    64) Если в таблицах supply  и book есть одинаковые книги, которые имеют равную цену,  вывести их название и автора, а также посчитать общее количество 
+        экземпляров книг в таблицах supply и book,  столбцы назвать Название, Автор  и Количество.
+        SELECT title AS Название, name_author AS Автор, SUM(book.amount + supply.amount) AS Количество
+            FROM supply 
+            INNER JOIN book USING(price,title)
+            INNER JOIN author ON author.name_author = supply.author
+            GROUP BY author.name_author, book.title
+
+
 
          
          
