@@ -350,7 +350,18 @@
             WHERE book.title = supply.title AND book.price <> supply.price
 
     
-    67)
+    67) Включить новых авторов в таблицу author с помощью запроса на добавление, а затем вывести все данные из таблицы author.  Новыми считаются авторы, 
+        которые есть в таблице supply, но нет в таблице author.
+        INSERT into author (name_author) 
+        SELECT supply.author 
+            FROM author 
+            RIGHT JOIN supply ON author.name_author = supply.author
+            WHERE name_author IS Null;
+
+        SELECT * FROM author;
+
+    68) Добавить новые книги из таблицы supply в таблицу book на основе сформированного выше запроса. Затем вывести для просмотра таблицу book.
+        
 
 
 
